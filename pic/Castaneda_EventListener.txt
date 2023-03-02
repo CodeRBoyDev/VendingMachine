@@ -1,0 +1,309 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+
+
+public class EventListener  implements ActionListener{
+
+
+	public void actionPerformed(ActionEvent e) {
+	
+		//Button
+	if(e.getSource() == SampleProject.btnCoke){
+		double pricer;
+		pricer = SampleProject.price = 24.00;
+		SampleProject.btnSprite.setEnabled(false);
+		SampleProject.btnPepsi.setEnabled(false);
+		SampleProject.btn7up.setEnabled(false);
+		
+		int qty;
+		double total;
+		qty = (Integer) SampleProject.spinnerQty.getValue();
+		total = qty * SampleProject.price;
+		SampleProject.textTotal.setText( String.valueOf(total));
+	}
+	
+	if (e.getSource() == SampleProject.btnSprite){
+		double pricer;
+		pricer = SampleProject.price = 23.00;
+		
+		SampleProject.btnCoke.setEnabled(false);
+		SampleProject.btnPepsi.setEnabled(false);
+		SampleProject.btn7up.setEnabled(false);
+		
+		int qty;
+		double total;
+		qty = (Integer) SampleProject.spinnerQty.getValue();
+		total = qty * SampleProject.price;
+		SampleProject.textTotal.setText( String.valueOf(total));
+	}
+	
+	if (e.getSource() == SampleProject.btnPepsi){
+		double pricer = SampleProject.price = 26.00;
+		
+		SampleProject.btnSprite.setEnabled(false);
+		SampleProject.btnCoke.setEnabled(false);
+		SampleProject.btn7up.setEnabled(false);
+		
+		int qty;
+		double total;
+		qty = (Integer) SampleProject.spinnerQty.getValue();
+		total = qty * SampleProject.price;
+		SampleProject.textTotal.setText( String.valueOf(total));
+	}
+	
+	if (e.getSource() == SampleProject.btn7up){
+		double pricer = SampleProject.price = 25.00;
+		SampleProject.btnSprite.setEnabled(false);
+		SampleProject.btnCoke.setEnabled(false);
+		SampleProject.btnPepsi.setEnabled(false);
+		
+		int qty;
+		double total;
+		qty = (Integer) SampleProject.spinnerQty.getValue();
+		total = qty * SampleProject.price;
+		SampleProject.textTotal.setText( String.valueOf(total));
+	}
+	
+	//Payment
+	if (e.getSource() == SampleProject.btnPay){
+		
+		String selectedItem = "";
+		int qty = (Integer)SampleProject.spinnerQty.getValue();
+		//Filtering
+		JFrame f = new JFrame();
+		if (SampleProject.price == 0.0 ){
+			JOptionPane.showMessageDialog(f, "Please Select Your Item");  
+		}
+		else if(qty == 0){
+			JOptionPane.showMessageDialog(f, "Please Select Quantity");  
+		}
+		else{
+		String totalS = SampleProject.textTotal.getText();
+		double totalP = Double.parseDouble(totalS);	
+		
+	//For Change
+		double change;
+		String cashS = SampleProject.txtCash.getText();
+	
+		if(cashS.isEmpty()){
+			JOptionPane.showMessageDialog(f, "Enter Cash");
+			
+		}else{
+			try{
+				double cash = Double.parseDouble(cashS);
+				change = cash - totalP;
+				
+				if (change < 0.0){
+					SampleProject.textChange.setText("");
+					JOptionPane.showMessageDialog(f, "Your cash is not enough, add "+ (totalP-cash));
+					
+				}else{
+				SampleProject.textChange.setText(String.valueOf(change));
+			
+					//Coke
+				if (SampleProject.price == 24){
+					selectedItem = "Coke";
+					if(qty == 1)
+					{
+						SampleProject.cokeImg4.setEnabled(false);
+					}
+					
+					else if(qty == 2)
+					{
+						SampleProject.cokeImg4.setEnabled(false);
+						SampleProject.cokeImg1.setEnabled(false);
+					}
+					else if (qty == 3)
+					{
+						SampleProject.cokeImg4.setEnabled(false);
+						SampleProject.cokeImg1.setEnabled(false);
+						SampleProject.cokeImg2.setEnabled(false);
+					
+					}	
+					else
+					{
+						SampleProject.cokeImg4.setEnabled(false);
+						SampleProject.cokeImg1.setEnabled(false);
+						SampleProject.cokeImg2.setEnabled(false);
+						SampleProject.cokeImg3.setEnabled(false);
+					}
+						
+								}
+					//Pepsi
+				if (SampleProject.price == 26){
+					selectedItem = "Pepsi";
+					if(qty == 1)
+					{
+						SampleProject.pepsiImage1.setEnabled(false);
+					}
+					
+					else if(qty == 2)
+					{
+						SampleProject.pepsiImage1.setEnabled(false);
+						SampleProject.pepsiImage2.setEnabled(false);
+					}
+					else if (qty == 3)
+					{
+						SampleProject.pepsiImage1.setEnabled(false);
+						SampleProject.pepsiImage2.setEnabled(false);
+						SampleProject.pepsiImage4.setEnabled(false);
+					
+					}	
+					else
+					{
+						SampleProject.pepsiImage1.setEnabled(false);
+						SampleProject.pepsiImage2.setEnabled(false);
+						SampleProject.pepsiImage4.setEnabled(false);
+						SampleProject.pepsiImage3.setEnabled(false);
+					}
+						
+								}
+				//Sprite 
+				if (SampleProject.price == 23){
+					selectedItem = "Sprite";
+					if(qty == 1)
+					{
+						SampleProject.spriteImg1.setEnabled(false);
+					}
+					
+					else if(qty == 2)
+					{
+						SampleProject.spriteImg1.setEnabled(false);
+						SampleProject.spriteImg2.setEnabled(false);
+					}
+					else if (qty == 3)
+					{
+						SampleProject.spriteImg1.setEnabled(false);
+						SampleProject.spriteImg2.setEnabled(false);
+						SampleProject.spriteImg4.setEnabled(false);
+					
+					}	
+					else
+					{
+						SampleProject.spriteImg1.setEnabled(false);
+						SampleProject.spriteImg2.setEnabled(false);
+						SampleProject.spriteImg4.setEnabled(false);
+						SampleProject.spriteImg3.setEnabled(false);
+					}
+						
+								}
+				//7-up
+				if (SampleProject.price == 25){
+					selectedItem = "7-Up";
+					if(qty == 1)
+					{
+						SampleProject.up7Images4.setEnabled(false);
+					}
+					
+					else if(qty == 2)
+					{
+						SampleProject.up7Images4.setEnabled(false);
+						SampleProject.up7Images1.setEnabled(false);
+					}
+					else if (qty == 3)
+					{
+						SampleProject.up7Images4.setEnabled(false);
+						SampleProject.up7Images1.setEnabled(false);
+						SampleProject.up7Images2.setEnabled(false);
+					
+					}	
+					else
+					{
+						SampleProject.up7Images4.setEnabled(false);
+						SampleProject.up7Images1.setEnabled(false);
+						SampleProject.up7Images2.setEnabled(false);
+						SampleProject.up7Images3.setEnabled(false);
+					}
+						
+								}
+				String qI = "";
+				
+				if (qty <= 1){
+					qI = "piece";
+				}else{
+					qI = "pieces";
+				}
+				
+				int c = JOptionPane.showConfirmDialog(f, "Thank You For Buying "+qty +" "+qI+" of "+selectedItem+"!!!,\n Do You Want Buy Again?","Ask?", JOptionPane.YES_NO_OPTION);
+				
+				if (c == JOptionPane.YES_OPTION){
+					double pricer; 
+					pricer = SampleProject.price = 0.0;
+					
+					SampleProject.btn7up.setEnabled(true);
+					SampleProject.btnCoke.setEnabled(true);
+					SampleProject.btnPepsi.setEnabled(true);
+					SampleProject.btnSprite.setEnabled(true);
+					
+				
+					
+					SampleProject.spinnerQty.setValue(0);
+					SampleProject.textChange.setText("");
+					SampleProject.textTotal.setText("");
+					SampleProject.txtCash.setText("");
+					
+					SampleProject.cokeImg4.setEnabled(true);
+					SampleProject.cokeImg1.setEnabled(true);
+					SampleProject.cokeImg2.setEnabled(true);
+					SampleProject.cokeImg3.setEnabled(true);
+					
+					SampleProject.pepsiImage1.setEnabled(true);
+					SampleProject.pepsiImage2.setEnabled(true);
+					SampleProject.pepsiImage4.setEnabled(true);
+					SampleProject.pepsiImage3.setEnabled(true);
+					
+					SampleProject.spriteImg1.setEnabled(true);
+					SampleProject.spriteImg2.setEnabled(true);
+					SampleProject.spriteImg4.setEnabled(true);
+					SampleProject.spriteImg3.setEnabled(true);
+					
+					SampleProject.up7Images4.setEnabled(true);
+					SampleProject.up7Images1.setEnabled(true);
+					SampleProject.up7Images2.setEnabled(true);
+					SampleProject.up7Images3.setEnabled(true);
+				}else{
+					System.exit(0);
+				}
+				}
+				}catch(NumberFormatException ex){
+				JOptionPane.showMessageDialog(f, "Invalid Input, please input numeric value only","Warning", JOptionPane.WARNING_MESSAGE);
+				}
+		}
+			}
+	}
+	
+	//Clear
+	if(e.getSource()== SampleProject.btnCancel){
+		double pricer; 
+		pricer = SampleProject.price = 0.0;
+		
+		SampleProject.btn7up.setEnabled(true);
+		SampleProject.btnCoke.setEnabled(true);
+		SampleProject.btnPepsi.setEnabled(true);
+		SampleProject.btnSprite.setEnabled(true);
+		
+	
+		
+		SampleProject.spinnerQty.setValue(0);
+		SampleProject.textChange.setText("");
+		SampleProject.textTotal.setText("");
+		SampleProject.txtCash.setText("");
+	}
+
+	
+	}
+	
+	}
+				
+		
+		
+	
+	
+	
+		
+	
+	
